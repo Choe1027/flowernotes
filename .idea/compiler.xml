@@ -9,7 +9,11 @@
         <module name="api" />
         <module name="back" />
         <module name="common" />
+        <module name="core" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="test" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

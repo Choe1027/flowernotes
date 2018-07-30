@@ -1,9 +1,10 @@
-package com.fengshang.biz.webserver;
+package com.flowernotes.back;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.fengshang.common.frame.dao.builder.ReVFS;
-import com.fengshang.common.frame.dao.interceptor.PagePluginInterceptor;
-import com.fengshang.common.utils.LoggerUtil;
+import com.flowernotes.common.utils.LoggerUtil;
+import com.flowernotes.core.dao.builder.ReVFS;
+import com.flowernotes.core.dao.interceptors.PagePluginInterceptor;
+
 import org.apache.ibatis.io.VFS;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -19,13 +20,14 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
-import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import javax.sql.DataSource;
+
 @Configuration
-@MapperScan(basePackages = {"com.fengshang.**.dao"}, sqlSessionFactoryRef = "druidSqlSessionFactory")
-public class DruidDBConfig  implements EnvironmentAware  {
+@MapperScan(basePackages = {"com.flowernotes.**.dao"}, sqlSessionFactoryRef = "druidSqlSessionFactory")
+public class DruidDBConfig implements EnvironmentAware {
 	
 //	static final String PACKAGE = "com.fengshang.common.dao.impl,com.fengshang.biz.information.dao.impl";
 	
@@ -50,8 +52,8 @@ public class DruidDBConfig  implements EnvironmentAware  {
     	this.typeAliasesPackage = propertyResolver.getProperty("mybatis.typeAliasesPackage");
 	}
       
-    @Bean(name="druidDataSource")    //声明其为Bean实例  
-    @Primary  //在同样的DataSource中，首先使用被标注的DataSource  
+    @Bean(name="druidDataSource")    //声明其为Bean实例
+    @Primary  //在同样的DataSource中，首先使用被标注的DataSource
     public DataSource dataSource(){  
         DruidDataSource datasource = new DruidDataSource();  
           

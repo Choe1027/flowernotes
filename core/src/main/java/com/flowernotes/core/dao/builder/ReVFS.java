@@ -1,15 +1,15 @@
-package com.fengshang.common.frame.dao.builder;
+package com.flowernotes.core.dao.builder;
+
+import org.apache.ibatis.io.VFS;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.ibatis.io.VFS;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-import org.springframework.core.io.support.ResourcePatternResolver;
 
 /** 重写扫描（为解决扫描jar文件，同时也解决SpringBootVFS未重写list(String)方法） */
 public class ReVFS extends VFS {

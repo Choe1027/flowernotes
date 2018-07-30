@@ -28,7 +28,7 @@ public class NoticeBean extends BaseBean {
     /**确认框按钮文案*/
     private String confirm_btn_msg;
     /**显示通知的页面*/
-    private String page;
+    private String page_url;
     /**状态 0启用 1停用*/
     private Integer state;
 
@@ -72,12 +72,12 @@ public class NoticeBean extends BaseBean {
         this.confirm_btn_msg = confirm_btn_msg;
     }
 
-    public String getPage() {
-        return page;
+    public String getPage_url() {
+        return page_url;
     }
 
-    public void setPage(String page) {
-        this.page = page;
+    public void setPage_url(String page_url) {
+        this.page_url = page_url;
     }
 
     public Integer getState() {

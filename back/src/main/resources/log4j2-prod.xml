@@ -3,7 +3,7 @@
 <configuration status="OFF">
 
     <properties>
-        <property name="LOG_HOME">/fs/work/backcenter/logs</property>
+        <property name="LOG_HOME">/hj/work/back/logs</property>
     </properties>
 
     <appenders>
