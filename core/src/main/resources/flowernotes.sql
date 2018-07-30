@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50640
 File Encoding         : 65001
 
-Date: 2018-07-27 17:44:35
+Date: 2018-07-30 17:38:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,7 +28,7 @@ CREATE TABLE `address` (
   `town_code` varchar(32) DEFAULT NULL COMMENT '城镇编码',
   `address_detail` varchar(255) DEFAULT NULL COMMENT '地址详情',
   `additional_info` varchar(255) DEFAULT NULL COMMENT '补填信息',
-  `isdefault` int(4) DEFAULT NULL COMMENT '是否默认地址',
+  `isdefault` int(4) DEFAULT NULL COMMENT '是否默认地址 1默认 0非默认',
   `receiver_name` varchar(64) DEFAULT NULL COMMENT '收货人名',
   `receiver_mobile` varchar(64) DEFAULT NULL COMMENT '收货人电话',
   `create_time` bigint(22) DEFAULT NULL COMMENT '创建时间',
@@ -69,7 +69,6 @@ CREATE TABLE `category` (
   `pid` int(11) DEFAULT NULL COMMENT '父级id',
   `desc` varchar(255) DEFAULT NULL COMMENT '描述',
   `state` int(4) DEFAULT NULL COMMENT '状态 0 启用，1 禁用',
-  `type` int(4) DEFAULT NULL COMMENT '品类类型，',
   `create_time` bigint(22) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -83,10 +82,10 @@ CREATE TABLE `category` (
 -- ----------------------------
 DROP TABLE IF EXISTS `city_areas`;
 CREATE TABLE `city_areas` (
-  `city_code` varchar(32) DEFAULT NULL,
-  `city_name` varchar(32) DEFAULT NULL,
-  `parent_code` varchar(32) DEFAULT NULL,
-  `level` int(4) DEFAULT NULL
+  `city_code` varchar(32) DEFAULT NULL COMMENT '城市编码',
+  `city_name` varchar(32) DEFAULT NULL COMMENT '城市名称',
+  `parent_code` varchar(32) DEFAULT NULL COMMENT '父级编码',
+  `level` int(4) DEFAULT NULL COMMENT '城市等级'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
@@ -150,10 +149,10 @@ CREATE TABLE `coupon_template` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for deliervery_man
+-- Table structure for delivery_man
 -- ----------------------------
-DROP TABLE IF EXISTS `deliervery_man`;
-CREATE TABLE `deliervery_man` (
+DROP TABLE IF EXISTS `delivery_man`;
+CREATE TABLE `delivery_man` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) DEFAULT NULL COMMENT '配送原名称',
   `mobile` varchar(64) DEFAULT NULL COMMENT '配送员手机号',
@@ -162,7 +161,7 @@ CREATE TABLE `deliervery_man` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Records of deliervery_man
+-- Records of delivery_man
 -- ----------------------------
 
 -- ----------------------------
@@ -209,7 +208,7 @@ CREATE TABLE `goods` (
   `old_price` double(10,2) DEFAULT NULL COMMENT '原价',
   `now_price` double(10,2) DEFAULT NULL COMMENT '现价',
   `stock_num` int(10) DEFAULT NULL COMMENT '库存',
-  `type` int(4) DEFAULT NULL COMMENT '商品类型',
+  `type` int(4) DEFAULT NULL COMMENT '商品类型 1普通商品 2秒杀商品 3预购商品 4竞拍商品',
   `state` int(4) DEFAULT NULL COMMENT '状态 0 启用 1禁用',
   `sold_num` int(22) DEFAULT NULL COMMENT '已售数量',
   `order_no` int(11) DEFAULT NULL COMMENT '排序号',
@@ -244,24 +243,6 @@ CREATE TABLE `grade` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for main_notice
--- ----------------------------
-DROP TABLE IF EXISTS `main_notice`;
-CREATE TABLE `main_notice` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` int(4) DEFAULT NULL COMMENT '通知类型',
-  `title` varchar(64) DEFAULT NULL COMMENT '通知标题',
-  `content` varchar(255) DEFAULT NULL COMMENT '通知内容',
-  `state` int(4) DEFAULT NULL COMMENT '状态 0启用 1停用',
-  `create_time` bigint(22) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of main_notice
--- ----------------------------
-
--- ----------------------------
 -- Table structure for module
 -- ----------------------------
 DROP TABLE IF EXISTS `module`;
@@ -271,6 +252,7 @@ CREATE TABLE `module` (
   `pid` int(11) DEFAULT NULL COMMENT '父级id',
   `type` int(4) DEFAULT NULL COMMENT '0 菜单 1 按钮',
   `url` varchar(255) DEFAULT NULL COMMENT '连接',
+  `create_time` bigint(22) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -295,6 +277,27 @@ CREATE TABLE `navigation` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for notice
+-- ----------------------------
+DROP TABLE IF EXISTS `notice`;
+CREATE TABLE `notice` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` int(4) DEFAULT NULL COMMENT '通知类型 1确认框 2操作框',
+  `title` varchar(64) DEFAULT NULL COMMENT '通知标题',
+  `content` varchar(255) DEFAULT NULL COMMENT '通知内容',
+  `cancel_btn_msg` varchar(60) DEFAULT NULL COMMENT '取消框按钮文案',
+  `confirm_btn_msg` varchar(60) DEFAULT NULL COMMENT '确认框按钮文案',
+  `page_url` varchar(300) DEFAULT NULL COMMENT '显示通知的页面',
+  `state` int(4) DEFAULT NULL COMMENT '状态 0启用 1停用',
+  `create_time` bigint(22) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of notice
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for order
 -- ----------------------------
 DROP TABLE IF EXISTS `order`;
@@ -302,7 +305,7 @@ CREATE TABLE `order` (
   `id` int(11) NOT NULL,
   `ordercode` varchar(64) DEFAULT NULL COMMENT '订单编号',
   `user_id` int(11) DEFAULT NULL COMMENT '用户ID',
-  `type` int(4) DEFAULT NULL COMMENT '订单种类',
+  `type` int(4) DEFAULT NULL COMMENT '订单种类 1普通订单 2秒杀订单 3预购订单 4拍卖订单',
   `address_deatil` varchar(400) DEFAULT NULL COMMENT '地址详情',
   `receiver_name` varchar(64) DEFAULT NULL COMMENT '收货人名称',
   `receiver_mobile` varchar(64) DEFAULT NULL COMMENT '收货人电话',
@@ -337,6 +340,7 @@ CREATE TABLE `order_good` (
   `id` int(11) NOT NULL,
   `order_id` int(11) DEFAULT NULL,
   `good_id` int(11) DEFAULT NULL,
+  `create_time` bigint(22) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -429,6 +433,7 @@ CREATE TABLE `user_coupon` (
   `user_id` int(11) DEFAULT NULL COMMENT '用户id',
   `coupon_id` int(11) DEFAULT NULL COMMENT '优惠券id',
   `status` int(4) DEFAULT NULL COMMENT '优惠券状态，0未使用 1已使用 -1 已过期',
+  `create_time` bigint(22) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
