@@ -1,4 +1,4 @@
-package com.flowernotes.core.base;
+package com.flowernotes.core.cache;
 
 import java.util.Map;
 

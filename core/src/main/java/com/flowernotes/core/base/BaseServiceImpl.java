@@ -5,6 +5,7 @@ import com.flowernotes.common.bean.Page;
 import com.flowernotes.common.exception.CommonException;
 import com.flowernotes.common.exception.Error;
 import com.flowernotes.common.utils.ObjectUtil;
+import com.flowernotes.core.cache.CacheService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
