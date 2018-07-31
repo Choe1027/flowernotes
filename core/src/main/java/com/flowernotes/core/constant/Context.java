@@ -30,4 +30,5 @@ public interface Context {
      * 缓存当天最后的订单编号，自增
      */
     String cache_latest_orderno ="order_num_incr";
+
 }
