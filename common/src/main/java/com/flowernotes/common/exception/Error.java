@@ -12,12 +12,22 @@ package com.flowernotes.common.exception;
 public enum  Error {
     /** 未知异常*/
     notKnow_error(-1, "未知异常,未知异常，请与客服联系"),
+    /** 找不到请求号*/
+    system_call_notfind(104, "找不到请求号","未找到对应的请求号,服务异常，请与客服联系"),
     /** 系统异常*/
-    system_error(9999, "系统异常, 服务异常,请与客服联系"),
+    system_error(100, "系统异常, 服务异常,请与客服联系"),
+    /** 空指针异常,服务器错误*/
+    system_nullpoint_error(101, "空指针异常,服务器错误"),
     /**id不能为空*/
-    id_must_not_be_null(101,"id参数不能为空"),
+    id_must_not_be_null(203,"id参数不能为空"),
     /** 公共异常 */
-    biz_error(201, "", "");
+    biz_error(201, "", ""),
+    /** 请求参数不是一个json*/
+    biz_param_is_not_a_json(202,"请求数据中不是一个json格式数据"),
+    /**token为空*/
+    biz_nottoken(204, "请求加密接口，未建立加密token", "请求超时，请重试");
+
+
 
     /** 编码值 */
     private int code;

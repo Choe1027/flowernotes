@@ -42,4 +42,19 @@ public interface Context {
      * 分布式锁的默认超时时间(毫秒)
      */
     Long cache_lock_timeout = 3000L;
+
+    /**
+     * session中存储token串的key
+     */
+    String session_token = "session_token";
+
+    /**
+     * session中存储userId的key
+     */
+    String session_userId = "session_userId";
+
+    /**
+     * session中存储用户类型的key
+     */
+    String session_userType = "session_userType";
 }

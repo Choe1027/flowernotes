@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flowernotes.back.dao.BackUserMapper">
+	
+	
+    <select id="listPage" parameterType="BackUserBean" resultType="BackUserBean">
+    </select>
+
+    <select id="get" parameterType="BackUserBean" resultType="BackUserBean">
+	</select>
+    
+    <delete id="delete" parameterType="BackUserBean">
+    </delete>
+ 
+    <insert id="add" parameterType="BackUserBean" keyProperty="id" useGeneratedKeys="true">
+	</insert>
+    
+    <update id="update" parameterType="BackUserBean">
+    </update>
+
+    <select id="select" parameterType="BackUserBean" resultType="BackUserBean">
+    </select>
+
+    <select id="listPageDesc" parameterType="BackUserBean" resultType="BackUserBean">
+    </select>
+
+</mapper>

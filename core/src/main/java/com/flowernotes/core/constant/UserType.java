@@ -11,7 +11,8 @@ package com.flowernotes.core.constant;
  */
 public enum UserType {
     user(1,"用户"),
-    delivery_man(2,"配送员")
+    delivery_man(2,"配送员"),
+    notKnow(-1,"未知")
     ;
     private Integer type;
     private String desc;
@@ -19,6 +20,16 @@ public enum UserType {
     UserType(Integer type, String desc) {
         this.type = type;
         this.desc = desc;
+    }
+
+    public static UserType forType(Integer userType) {
+        for (UserType ut: UserType.values()
+             ) {
+            if (ut.getType().equals(userType)){
+                return ut;
+            }
+        }
+        return null;
     }
 
     public Integer getType() {

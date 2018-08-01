@@ -119,7 +119,7 @@ public class CacheClient {
 	public Long lock(String key, Long timeout) {
 		Jedis jedis = getClient();
 		try {
-			key = Context.cache_lock_key + key;
+			key = Context.CACHE_LOCK_KEY + key;
 			if (timeout == null) {
 				timeout = Context.cache_lock_timeout;
 			}
@@ -163,7 +163,7 @@ public class CacheClient {
 	public void unlock(String key) {
 		Jedis jedis = getClient();
 		try {
-			key = Context.cache_lock_key + key;
+			key = Context.CACHE_LOCK_KEY + key;
 //			Long nowTime = System.currentTimeMillis();
 //			String oldTimeStr = jedis.get(key);
 //			if (oldTimeStr != null && Long.parseLong(oldTimeStr) < nowTime) {
