@@ -33,7 +33,13 @@ public interface Context {
      */
     String CACHE_PUSH_LOGIN_ENV = "push_env";
 
-
+    /**
+     * 下划线
+     */
     String UNDER_LINE = "_";
 
+    /**
+     * 分布式锁的默认超时时间(毫秒)
+     */
+    Long cache_lock_timeout = 3000L;
 }
