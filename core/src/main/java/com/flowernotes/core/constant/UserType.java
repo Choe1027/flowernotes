@@ -13,20 +13,20 @@ public enum UserType {
     user(1,"用户"),
     delivery_man(2,"配送员")
     ;
-    private Integer code;
+    private Integer type;
     private String desc;
 
-    UserType(Integer code, String desc) {
-        this.code = code;
+    UserType(Integer type, String desc) {
+        this.type = type;
         this.desc = desc;
     }
 
-    public Integer getCode() {
-        return code;
+    public Integer getType() {
+        return type;
     }
 
-    public void setCode(Integer code) {
-        this.code = code;
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public String getDesc() {

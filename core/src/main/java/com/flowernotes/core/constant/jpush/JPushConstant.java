@@ -21,17 +21,19 @@ public interface JPushConstant {
      */
     String JPUSH_MASTER_SCRET_FLOWERNOTES="d66f05f8f15082a6d1e3c387";
 
-    String APP_KEY_STRING ="appkey";
+    String APP_KEY ="appkey";
 
-    String TIMESTAMP_STRING = "timestamp";
+    String TIMESTAMP = "timestamp";
 
-    String RANDOM_STR_STRING = "random_str";
+    String RANDOM_STR = "random_str";
 
-    String KEY_STRING = "key";
+    String KEY = "key";
 
-    String SIGNATURE_STRING ="signature";
+    String SIGNATURE ="signature";
 
-    String EQUAL_STRING = "=";
+    String EQUAL = "=";
 
-    String AND_STRING = "&";
+    String AND = "&";
+
+    String MSG_CONTENT = "msgContent";
 }

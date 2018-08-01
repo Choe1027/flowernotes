@@ -28,6 +28,9 @@ public class JpushBean extends BaseBean {
     //设备编号
     private List<String> registrationIds;
 
+    //用户别名
+    private List<String> alias;
+
     // 用户类型
     private UserType userType;
 
@@ -129,6 +132,14 @@ public class JpushBean extends BaseBean {
 
     public Long getTimeToLive() {
         return timeToLive;
+    }
+
+    public List<String> getAlias() {
+        return alias;
+    }
+
+    public void setAlias(List<String> alias) {
+        this.alias = alias;
     }
 
     public void setTimeToLive(Long timeToLive) {
