@@ -1,6 +1,7 @@
 package com.flowernotes.core.jpush;
 
 import com.flowernotes.core.bean.jpush.JMsgBean;
+import com.flowernotes.core.bean.jpush.JpushBean;
 
 /**
  * @author cyk
@@ -15,6 +16,10 @@ public class PushHelper {
 
     public static JMsgBean createJMsg(){
 
+        return null;
+    }
+
+    public static JpushBean createJpushBean(){
         return null;
     }
 }
