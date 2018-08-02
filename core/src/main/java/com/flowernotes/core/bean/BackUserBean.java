@@ -66,4 +66,10 @@ public class BackUserBean extends BaseBean {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+    @Override
+    public void removeSensetive() {
+        super.removeSensetive();
+        password = null;
+    }
 }

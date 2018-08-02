@@ -3,6 +3,7 @@ package com.flowernotes.common.base;
 import com.flowernotes.common.bean.Page;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * @author cyk
@@ -42,5 +43,23 @@ public class BaseBean implements Serializable {
 
     public void setPage(Page page) {
         this.page = page;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BaseBean baseBean = (BaseBean) o;
+        return Objects.equals(id, baseBean.id);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id);
+    }
+
+    public void removeSensetive(){
+        create_time = null;
     }
 }

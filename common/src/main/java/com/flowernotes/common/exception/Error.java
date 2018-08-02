@@ -29,7 +29,9 @@ public enum  Error {
     /** 用户名 密码不能为空*/
     common_account_password_cannot_be_null(205, "用户名或者密码不能为空", "用户名或者密码不能为空"),
     /** 用户已经存在*/
-    common_user_is_exist(206, "用户已经存在","用户已存在");
+    common_user_is_exist(206, "用户已经存在","用户已存在"),
+    common_user_not_exist(207,"用户不存在" ,"用户不存在" ),
+    account_password_is_wrong(208,"账号或密码错误" , "账号或密码错误");
 
 
 

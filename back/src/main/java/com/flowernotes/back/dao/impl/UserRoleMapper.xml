@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flowernotes.back.dao.UserRoleMapper">
+	
+	
+    <select id="listPage" parameterType="UserRoleBean" resultType="UserRoleBean">
+    </select>
+
+    <select id="get" parameterType="UserRoleBean" resultType="UserRoleBean">
+	</select>
+    
+    <delete id="delete" parameterType="UserRoleBean">
+    </delete>
+ 
+    <insert id="add" parameterType="UserRoleBean" keyProperty="id" useGeneratedKeys="true">
+	</insert>
+    
+    <update id="update" parameterType="UserRoleBean">
+    </update>
+
+    <select id="select" parameterType="UserRoleBean" resultType="UserRoleBean">
+    </select>
+
+    <select id="listPageDesc" parameterType="UserRoleBean" resultType="UserRoleBean">
+    </select>
+
+</mapper>

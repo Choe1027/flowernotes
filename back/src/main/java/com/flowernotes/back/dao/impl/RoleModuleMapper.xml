@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flowernotes.back.dao.RoleModuleMapper">
+	
+	
+    <select id="listPage" parameterType="RoleModuleBean" resultType="RoleModuleBean">
+    </select>
+
+    <select id="get" parameterType="RoleModuleBean" resultType="RoleModuleBean">
+	</select>
+    
+    <delete id="delete" parameterType="RoleModuleBean">
+    </delete>
+ 
+    <insert id="add" parameterType="RoleModuleBean" keyProperty="id" useGeneratedKeys="true">
+	</insert>
+    
+    <update id="update" parameterType="RoleModuleBean">
+    </update>
+
+    <select id="select" parameterType="RoleModuleBean" resultType="RoleModuleBean">
+    </select>
+
+    <select id="listPageDesc" parameterType="RoleModuleBean" resultType="RoleModuleBean">
+    </select>
+
+</mapper>
