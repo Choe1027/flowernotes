@@ -25,7 +25,11 @@ public enum  Error {
     /** 请求参数不是一个json*/
     biz_param_is_not_a_json(202,"请求数据中不是一个json格式数据"),
     /**token为空*/
-    biz_nottoken(204, "请求加密接口，未建立加密token", "请求超时，请重试");
+    biz_nottoken(204, "请求加密接口，未建立加密token", "请求超时，请重试"),
+    /** 用户名 密码不能为空*/
+    common_account_password_cannot_be_null(205, "用户名或者密码不能为空", "用户名或者密码不能为空"),
+    /** 用户已经存在*/
+    common_user_is_exist(206, "用户已经存在","用户已存在");
 
 
 

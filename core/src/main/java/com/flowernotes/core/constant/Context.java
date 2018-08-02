@@ -57,4 +57,9 @@ public interface Context {
      * session中存储用户类型的key
      */
     String session_userType = "session_userType";
+
+    /**
+     * session中存储用户验证码的key
+     */
+    String session_img_code = "session_img_code";
 }

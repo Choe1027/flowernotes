@@ -86,21 +86,21 @@ public class PagePluginInterceptor implements Interceptor {
             // 自动补填语句,根据命名规则来生成sql语句
 			{
 				boolean isAuto = true;
-				if (id.startsWith("add")) {
+				if (id.endsWith("add")) {
 					sql = SqlBuilder.buildInsertSql(parameterObject);
-				} else if (id.startsWith("update")) {
+				} else if (id.endsWith("update")) {
 					sql = SqlBuilder.buildUpdateSql(parameterObject);
-				} else if (id.startsWith("delete")) {
+				} else if (id.endsWith("delete")) {
 					sql = SqlBuilder.buildDeleteSql(parameterObject);
-				} else if (id.startsWith("listPage")) {
+				} else if (id.endsWith("listPage")) {
 					sql = SqlBuilder.buildSelectSql(parameterObject);
-				} else if (id.startsWith("select")) {
+				} else if (id.endsWith("select")) {
 					sql = SqlBuilder.buildSelectSql(parameterObject);
-				} else if (id.startsWith("get")) {
+				} else if (id.endsWith("get")) {
 					sql = SqlBuilder.buildGetSql(parameterObject);
-				} else if (id.startsWith("listPageDesc")) {
+				} else if (id.endsWith("listPageDesc")) {
                     sql = SqlBuilder.buildSelectSql(parameterObject);
-                }else if (id.startsWith("selectDesc")){
+                }else if (id.endsWith("selectDesc")){
 					sql = SqlBuilder.buildSelectSql(parameterObject);
                 } else {
 					isAuto = false;

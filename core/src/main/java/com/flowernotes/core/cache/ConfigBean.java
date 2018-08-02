@@ -1,24 +1,14 @@
 package com.flowernotes.core.cache;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
 /** Redis配置信息 */
-@Component
+//@Component
 public class ConfigBean {
-	@Value("${cache.jedis.address}")
 	private String address;
-	@Value("${cache.jedis.flag}_")
 	private String flag;
-	@Value("${cache.jedis.port}")
 	private Integer port;
-	@Value("${cache.jedis.maxActive}")
 	private Integer maxActive;
-	@Value("${cache.jedis.maxIdle}")
 	private Integer maxIdle;
-	@Value("${cache.jedis.maxWait}")
 	private String maxWait;
-	@Value("${cache.jedis.pwd}")
 	private String pwd;
 	
 	public String getAddress() {

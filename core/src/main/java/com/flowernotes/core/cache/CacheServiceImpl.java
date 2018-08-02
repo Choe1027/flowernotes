@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 @Component
-public class CacheServerImpl implements CacheService {
+public class CacheServiceImpl implements CacheService {
 
 	@Autowired
 	private CacheClient cacheClient;
