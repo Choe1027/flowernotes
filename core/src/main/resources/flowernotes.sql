@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50640
 File Encoding         : 65001
 
-Date: 2018-07-30 17:38:08
+Date: 2018-08-02 18:03:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -52,11 +52,12 @@ CREATE TABLE `back_user` (
   `status` int(4) DEFAULT NULL COMMENT '状态 0 启用 1禁用',
   `create_time` bigint(22) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of back_user
 -- ----------------------------
+INSERT INTO `back_user` VALUES ('1', null, 'admin', '123456', null, null, '1533180330503');
 
 -- ----------------------------
 -- Table structure for category
