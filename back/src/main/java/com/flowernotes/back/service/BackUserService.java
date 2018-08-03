@@ -4,6 +4,8 @@ import com.flowernotes.back.dto.BackUserDTO;
 import com.flowernotes.core.base.BaseService;
 import com.flowernotes.core.bean.BackUserBean;
 
+import java.util.List;
+
 /**
  * @author cyk
  * @date 2018/8/2/002 14:19
@@ -41,4 +43,25 @@ public interface BackUserService extends BaseService<BackUserBean> {
      * @return
      */
     BackUserDTO login(BackUserBean backUserBean);
+
+    /**
+     * 给用户添加角色
+     * @param backUserDTO
+     * @return
+     */
+    BackUserDTO authorization(BackUserDTO backUserDTO);
+
+    /**
+     * 获取后台用户列表
+     * @param backUserDTO
+     * @return
+     */
+    List<BackUserDTO> getUserList(BackUserDTO backUserDTO);
+
+    /**
+     * 获取单个后台用户详情，返回结果带有角色列表
+     * @param backUserBean
+     * @return
+     */
+    BackUserDTO getBackUser(BackUserBean backUserBean);
 }

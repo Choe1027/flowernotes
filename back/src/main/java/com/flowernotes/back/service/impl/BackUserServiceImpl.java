@@ -105,33 +105,76 @@ public class BackUserServiceImpl extends BaseServiceImpl<BackUserBean> implement
         }
         List<ModuleBean> list = new ArrayList<>();
         list.addAll(modules);
-        backUserDTO.setModules(generateTree(list,1L));
+        backUserDTO.setModules(moduleService.generateTree(list,1L));
         backUserDTO.setRoleNames(roleNames);
         return backUserDTO;
     }
 
-    /**
-     * 根据list 生成 权限树
-     * @param modules 所有的权限
-     * @param pid 根节点的父id, 在本项目中,根节点父id从1开始
-     * @return
-     */
-    private List<ModuleBean>  generateTree(List<ModuleBean> modules,Long pid){
-        List<ModuleBean> list = new ArrayList<>();
-        if (modules == null || modules.isEmpty()){
-            return list;
+    @Override
+    public BackUserDTO authorization(BackUserDTO backUserDTO) {
+        if (backUserDTO.getId() == null || backUserDTO.getId().equals(0)){
+            throw  new CommonException(Error.id_must_not_be_null,"用户授权id为空");
         }
-        for (ModuleBean module: modules) {
-            if (pid.equals(module.getPid())){
-                list.add(module);
-                List<ModuleBean> list1 = generateTree(modules, module.getId());
-                module.setChildrenList(list1);
-            }
+        BackUserBean byId = getById(backUserDTO.getId());
+        if (byId == null){
+            throw new CommonException(Error.common_obj_not_exist,"授权用户为空");
         }
-        return list;
+        List<RoleBean> roles = backUserDTO.getRoles();
+        if (roles == null || roles.isEmpty()){
+            throw new CommonException(Error.common_lost_params,"缺少授权内容");
+        }
+        // 删除之前的授权
+        UserRoleBean userRoleBean = new UserRoleBean();
+        userRoleBean.setUser_id(backUserDTO.getId());
+        userRoleService.delete(userRoleBean);
+        // 添加新的授权信息
+        for (RoleBean roleBean: roles) {
+            userRoleBean.setRole_id(roleBean.getId());
+            userRoleService.add(userRoleBean);
+        }
+        ObjectUtil.insertObj(backUserDTO,byId);
+        return backUserDTO;
     }
 
 
+    @Override
+    public List<BackUserDTO> getUserList(BackUserDTO backUserDTO) {
+
+        List<BackUserBean> select = select(backUserDTO);
+        List<BackUserDTO> datas = new ArrayList<>();
+        if (select != null && !select.isEmpty()){
+            for (BackUserBean backUser: select
+                 ) {
+                datas.add(getBackUser(backUser));
+            }
+        }
+        return datas;
+    }
+
+    @Override
+    public BackUserDTO getBackUser(BackUserBean backUserBean) {
+
+        if (backUserBean.getId() == null || backUserBean.getId().equals(0)){
+            throw new CommonException(Error.id_must_not_be_null,"后台用户详情，id为空");
+        }
+        BackUserBean byId = getById(backUserBean.getId());
+        if (byId == null){
+            throw new CommonException(Error.common_user_not_exist);
+        }
+        UserRoleBean userRoleBean = new UserRoleBean();
+        userRoleBean.setUser_id(backUserBean.getId());
+        BackUserDTO backUserDTO = new BackUserDTO();
+        List<UserRoleBean> userRoles = userRoleService.select(userRoleBean);
+        if (userRoles != null && !userRoles.isEmpty()){
+            List<RoleBean> roles = new ArrayList<>();
+            for (UserRoleBean ur: userRoles) {
+                roles.add(roleSerivce.getById(ur.getRole_id()));
+            }
+            backUserDTO.setRoles(roles);
+        }
+        ObjectUtil.insertObj(backUserDTO,byId);
+        return backUserDTO;
+    }
 
     @Override
     public void addUser(BackUserBean backUserBean) {

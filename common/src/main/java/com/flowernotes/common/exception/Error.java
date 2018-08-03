@@ -31,7 +31,9 @@ public enum  Error {
     /** 用户已经存在*/
     common_user_is_exist(206, "用户已经存在","用户已存在"),
     common_user_not_exist(207,"用户不存在" ,"用户不存在" ),
-    account_password_is_wrong(208,"账号或密码错误" , "账号或密码错误");
+    account_password_is_wrong(208,"账号或密码错误" , "账号或密码错误"),
+    common_lost_params(209,"缺少参数","缺少参数"),
+    common_obj_not_exist(210,"对象不存在","对象不存在");
 
 
 

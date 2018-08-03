@@ -2,6 +2,7 @@ package com.flowernotes.back.dto;
 
 import com.flowernotes.core.bean.BackUserBean;
 import com.flowernotes.core.bean.ModuleBean;
+import com.flowernotes.core.bean.RoleBean;
 
 import java.util.List;
 
@@ -22,6 +23,8 @@ public class BackUserDTO extends BackUserBean {
     private List<ModuleBean> modules ;
     /**所有的角色名称*/
     private List<String> roleNames;
+    /**所有的角色*/
+    private List<RoleBean> roles;
 
 
     public Long getStartTime() {
@@ -54,5 +57,13 @@ public class BackUserDTO extends BackUserBean {
 
     public void setRoleNames(List<String> roleNames) {
         this.roleNames = roleNames;
+    }
+
+    public List<RoleBean> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RoleBean> roles) {
+        this.roles = roles;
     }
 }
