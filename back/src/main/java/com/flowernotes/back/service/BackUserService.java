@@ -39,10 +39,10 @@ public interface BackUserService extends BaseService<BackUserBean> {
 
     /**
      * 登录
-     * @param backUserBean
+     * @param backUserDTO
      * @return
      */
-    BackUserDTO login(BackUserBean backUserBean);
+    BackUserDTO login(BackUserDTO backUserDTO);
 
     /**
      * 给用户添加角色

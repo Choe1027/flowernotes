@@ -18,6 +18,8 @@ import com.flowernotes.core.bean.ModuleBean;
 import com.flowernotes.core.bean.RoleBean;
 import com.flowernotes.core.bean.RoleModuleBean;
 import com.flowernotes.core.bean.UserRoleBean;
+import com.flowernotes.core.constant.Context;
+import com.flowernotes.core.utils.RequestPool;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -66,12 +68,18 @@ public class BackUserServiceImpl extends BaseServiceImpl<BackUserBean> implement
     }
 
     @Override
-    public BackUserDTO login(BackUserBean backUserBean) {
+    public BackUserDTO login(BackUserDTO userDTO) {
 
-        if (StringUtil.isEmpty(backUserBean.getAccount()) || StringUtil.isEmpty(backUserBean.getPassword())) {
+        if (StringUtil.isEmpty(userDTO.getAccount()) || StringUtil.isEmpty(userDTO.getPassword())) {
             throw new CommonException(Error.common_account_password_cannot_be_null);
         }
-        BackUserBean backUser = get(backUserBean);
+        if (StringUtil.isEmpty(userDTO.getCode())){
+            throw new CommonException(Error.common_lost_params,"验证码为空");
+        }
+        if (!userDTO.getCode().equals(RequestPool.getSession().getAttribute(Context.session_img_code))){
+            throw new CommonException(Error.common_code_is_wrong);
+        }
+        BackUserBean backUser = get(userDTO);
         if (backUser == null) {
             throw new CommonException(Error.account_password_is_wrong);
         }

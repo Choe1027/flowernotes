@@ -26,6 +26,9 @@ public class BackUserDTO extends BackUserBean {
     /**所有的角色*/
     private List<RoleBean> roles;
 
+    /** 验证码 */
+    private String code;
+
 
     public Long getStartTime() {
         return startTime;
@@ -65,5 +68,13 @@ public class BackUserDTO extends BackUserBean {
 
     public void setRoles(List<RoleBean> roles) {
         this.roles = roles;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }
