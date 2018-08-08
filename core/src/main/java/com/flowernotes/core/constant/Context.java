@@ -62,4 +62,9 @@ public interface Context {
      * session中存储用户验证码的key
      */
     String session_img_code = "session_img_code";
+
+    /**
+     * session 中存储微信登录用户的session_key
+     */
+    String session_wechat_session_key = "session_wechat_session_key";
 }

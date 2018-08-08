@@ -37,6 +37,8 @@ public class UserBean extends BaseBean {
     private Double balance;
     /**上次登录时间*/
     private Long last_login_time;
+    /** 微信登录的openid*/
+    private String openid;
 
     public String getName() {
         return name;
@@ -116,5 +118,13 @@ public class UserBean extends BaseBean {
 
     public void setLast_login_time(Long last_login_time) {
         this.last_login_time = last_login_time;
+    }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid;
     }
 }
