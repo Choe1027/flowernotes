@@ -46,7 +46,7 @@ public class BackUserController implements BizController {
         switch (call) {
             //用户登录
             case 101: {
-                BackUserBean backUserBean = JsonUtil.jsonToBean(json, BackUserBean.class);
+                BackUserDTO backUserBean = JsonUtil.jsonToBean(json, BackUserDTO.class);
                 BackUserBean backUser = backUserService.login(backUserBean);
                 ResponseUtil.outSuccess(response, backUser);
                 break;
