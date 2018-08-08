@@ -14,6 +14,8 @@ public enum  Error {
     notKnow_error(-1, "未知异常,未知异常，请与客服联系"),
     /** 找不到请求号*/
     system_call_notfind(104, "找不到请求号","未找到对应的请求号,服务异常，请与客服联系"),
+    /** 加解密异常*/
+    system_msg_AES_error(102,"加解密异常" ,"加解密异常"),
     /** 系统异常*/
     system_error(100, "系统异常, 服务异常,请与客服联系"),
     /** 空指针异常,服务器错误*/
@@ -35,6 +37,7 @@ public enum  Error {
     common_lost_params(209,"缺少参数","缺少参数"),
     common_obj_not_exist(210,"对象不存在","对象不存在"),
     common_code_is_wrong(211, "验证码有误","验证码有误");
+
 
 
 

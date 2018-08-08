@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--此处status表示log4j2本身的日志信息打印级别-->
+<configuration status="OFF">
+
+    <properties>
+        <property name="LOG_HOME">F:/logs/api</property>
+    </properties>
+
+    <appenders>
+        <!--不在console输出,避免catalina.out过大-->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36}:%L - %msg%n" />
+        </Console>
+        <!--所有Root level的日志-->
+        <RollingFile name="AllFile"
+                     bufferedIO="true" bufferSize="18192"
+                     fileName="${LOG_HOME}/all/message.log"
+                     filePattern="${LOG_HOME}/all/$${date:yyyy-MM}/message-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n" />
+
+            <Policies>
+                <!--每天压缩一次,时间单位是根据filePattern的自定义日期来定的,此处是天-->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                <!--一天内单个文件最大不超过200MB-->
+                <SizeBasedTriggeringPolicy size="200 MB" />
+            </Policies>
+            <!--max=10表示一天最多生成10个日志文件,即一天的日志总大小不超过2GB-->
+            <DefaultRolloverStrategy fileIndex="max" max="10">
+                <Delete basePath="${LOG_HOME}/all" maxDepth="2">
+                    <IfFileName glob="*/message-*.log.gz">
+                        <!--删除5天前的日志-->
+                        <IfLastModified age="5d"/>
+                    </IfFileName>
+                </Delete>
+            </DefaultRolloverStrategy>
+
+        </RollingFile>
+
+        <!--级别小于等于debug的日志-->
+        <RollingFile name="DebugFile"
+                     bufferedIO="true" bufferSize="18192"
+                     fileName="${LOG_HOME}/debug/message.log"
+                     filePattern="${LOG_HOME}/debug/$${date:yyyy-MM}/message-%d{yyyy-MM-dd}-%i.log.gz">
+            <Filters>
+                <ThresholdFilter level="info" onMatch="DENY" onMismatch="NEUTRAL" />
+                <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY" />
+            </Filters>
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n" />
+            <Policies>
+                <!--每天压缩一次,时间单位是根据filePattern的自定义日期来定的,此处是天-->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                <!--一天内单个文件最大不超过100M-->
+                <SizeBasedTriggeringPolicy size="200 MB" />
+            </Policies>
+            <!--max=10表示一天最多生成10个日志文件,即一天的日志总大小不超过1GB-->
+            <DefaultRolloverStrategy fileIndex="max" max="10">
+                <Delete basePath="${LOG_HOME}/debug" maxDepth="2">
+                    <IfFileName glob="*/message-*.log.gz">
+                        <!--删除10天前的日志-->
+                        <IfLastModified age="10d">
+                            <!--可选条件,按顺序执行-->
+                            <!--<IfAny>-->
+                            <!--至少保留1GB的日志-->
+                            <!--<IfAccumulatedFileSize exceeds="1 GB" />-->
+                            <!--至少保留30的文件-->
+                            <!--<IfAccumulatedFileCount exceeds="30" />-->
+                            <!--</IfAny>-->
+                        </IfLastModified>
+                    </IfFileName>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <!--级别等于info的日志-->
+        <RollingFile name="InfoFile"
+                     bufferedIO="true" bufferSize="18192"
+                     fileName="${LOG_HOME}/info/message.log"
+                     filePattern="${LOG_HOME}/info/$${date:yyyy-MM}/message-%d{yyyy-MM-dd}-%i.log.gz">
+            <Filters>
+                <ThresholdFilter level="warn" onMatch="DENY" onMismatch="NEUTRAL" />
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY" />
+            </Filters>
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n" />
+            <Policies>
+                <!--每天压缩一次,时间单位是根据filePattern的自定义日期来定的,此处是天-->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                <!--一天内单个文件最大不超过100M-->
+                <SizeBasedTriggeringPolicy size="100 MB" />
+            </Policies>
+            <!--max=10表示一天最多生成10个日志文件,即一天的日志总大小不超过1GB-->
+            <DefaultRolloverStrategy fileIndex="max" max="10">
+                <Delete basePath="${LOG_HOME}/info" maxDepth="2">
+                    <IfFileName glob="*/message-*.log.gz">
+                        <!--删除15天前的日志-->
+                        <IfLastModified age="15d" />
+                    </IfFileName>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <!--级别大于等于warn,小于等于error的日志-->
+        <RollingFile name="ErrorFile"
+                     bufferedIO="true" bufferSize="18192"
+                     fileName="${LOG_HOME}/error/message.log"
+                     filePattern="${LOG_HOME}/error/$${date:yyyy-MM}/message-%d{yyyy-MM-dd}-%i.log.gz">
+            <Filters>
+                <ThresholdFilter level="fatal" onMatch="DENY" onMismatch="NEUTRAL" />
+                <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY" />
+            </Filters>
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n" />
+            <Policies>
+                <!--每天压缩一次,时间单位是根据filePattern的自定义日期来定的,此处是天-->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                <!--一天内单个文件最大不超过100M-->
+                <SizeBasedTriggeringPolicy size="100 MB" />
+            </Policies>
+            <!--max=10表示一天最多生成10个日志文件,即一天的日志总大小不超过1GB-->
+            <DefaultRolloverStrategy fileIndex="max" max="10">
+                <Delete basePath="${LOG_HOME}/error" maxDepth="2">
+                    <IfFileName glob="*/message-*.log.gz">
+                        <!--删除30天前的日志-->
+                        <IfLastModified age="30d" />
+                    </IfFileName>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <!--级别等于fatal的日志-->
+        <RollingFile name="FatalFile"
+                     bufferedIO="true" bufferSize="18192"
+                     fileName="${LOG_HOME}/fatal/message.log"
+                     filePattern="${LOG_HOME}/fatal/$${date:yyyy-MM}/message-%d{yyyy-MM-dd}-%i.log.gz">
+            <Filters>
+                <ThresholdFilter level="fatal" onMatch="ACCEPT" onMismatch="DENY" />
+            </Filters>
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n" />
+            <Policies>
+                <!--每天压缩一次,时间单位是根据filePattern的自定义日期来定的,此处是天-->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                <!--一天内单个文件最大不超过100M-->
+                <SizeBasedTriggeringPolicy size="100 MB" />
+            </Policies>
+            <!--max=10表示一天最多生成10个日志文件,即一天的日志总大小不超过1GB-->
+            <DefaultRolloverStrategy fileIndex="max" max="10">
+                <Delete basePath="${LOG_HOME}/fatal" maxDepth="2">
+                    <IfFileName glob="*/message-*.log.gz">
+                        <!--删除30天前的日志-->
+                        <IfLastModified age="30d"/>
+                    </IfFileName>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+    </appenders>
+    <Loggers>
+        <!--<logger name="com.fengshang.biz..dit.kf.domain.dao" level="ERROR"/>-->
+        <logger name="org.springframework" level="ERROR"/>
+        <Root level="debug">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="AllFile" />
+            <AppenderRef ref="DebugFile" />
+            <AppenderRef ref="InfoFile" />
+            <AppenderRef ref="ErrorFile" />
+            <AppenderRef ref="FatalFile" />
+        </Root>
+    </Loggers>
+</configuration>
