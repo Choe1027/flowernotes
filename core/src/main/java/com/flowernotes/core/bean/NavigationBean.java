@@ -22,6 +22,10 @@ public class NavigationBean extends BaseBean {
     private String url;
     /**描述*/
     private String desc;
+    /** 启用状态 0启用 1禁用*/
+    private Integer state;
+    /** 排序号*/
+    private Integer orderNo;
 
     public String getUrl() {
         return url;
@@ -37,5 +41,21 @@ public class NavigationBean extends BaseBean {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    public Integer getOrderNo() {
+        return orderNo;
+    }
+
+    public void setOrderNo(Integer orderNo) {
+        this.orderNo = orderNo;
     }
 }

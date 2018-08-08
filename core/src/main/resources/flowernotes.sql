@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50640
 File Encoding         : 65001
 
-Date: 2018-08-02 18:03:33
+Date: 2018-08-08 17:58:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -269,13 +269,18 @@ CREATE TABLE `navigation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(255) DEFAULT NULL COMMENT '图片链接',
   `desc` varchar(255) DEFAULT NULL COMMENT '描述',
+  `orderNo` int(11) DEFAULT NULL COMMENT '排序号',
+  `state` int(4) DEFAULT NULL COMMENT '启用禁用状态 0启用 1禁用',
   `create_time` bigint(22) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of navigation
 -- ----------------------------
+INSERT INTO `navigation` VALUES ('1', 'http://b178.photo.store.qq.com/psb?/V12pSSt21DtgWE/MdCPuYUPYMN.2XFsmK2n4f.XXTIKdIypQ*NOaU.gUDY!/b/dNbXG2rTCgAA&bo=gAJVAwAAAAAFJ9A!&rf=viewer_4', '英大姐', '1', '0', '1533722112000');
+INSERT INTO `navigation` VALUES ('2', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1533732286570&di=2bc81c2af2495fe2b5a5155ae9d0bedf&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2Fimg13%2Fc3%2F20%2Fd%2F19.jpg', '小花花', '2', '0', '1533722112000');
+INSERT INTO `navigation` VALUES ('3', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1533732286570&di=f5f2d62809a60a2b0b7a7eca585eb3af&imgtype=0&src=http%3A%2F%2Fpic35.photophoto.cn%2F20150426%2F0035035786300591_b.jpg', '红花花', '3', '0', '1533722112000');
 
 -- ----------------------------
 -- Table structure for notice
@@ -415,6 +420,7 @@ CREATE TABLE `user` (
   `grade_name` int(4) DEFAULT NULL COMMENT '用户等级',
   `grade_id` int(11) DEFAULT NULL COMMENT '用户等级id',
   `is_vip` int(4) DEFAULT NULL COMMENT '是否vip 1 是 0不是',
+  `openid` varchar(60) DEFAULT NULL COMMENT '微信登录的用户标志号',
   `balance` double(16,2) DEFAULT NULL COMMENT '余额',
   `create_time` bigint(22) DEFAULT NULL COMMENT '创建时间',
   `last_login_time` bigint(22) DEFAULT NULL COMMENT '上次登录时间',

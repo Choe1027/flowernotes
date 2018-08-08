@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flowernotes.api.dao.NavigationMapper">
+	
+	
+    <select id="listPage" parameterType="NavigationBean" resultType="NavigationBean">
+    </select>
+
+    <select id="get" parameterType="NavigationBean" resultType="NavigationBean">
+	</select>
+    
+    <delete id="delete" parameterType="NavigationBean">
+    </delete>
+ 
+    <insert id="add" parameterType="NavigationBean" keyProperty="id" useGeneratedKeys="true">
+	</insert>
+    
+    <update id="update" parameterType="NavigationBean">
+    </update>
+
+    <select id="select" parameterType="NavigationBean" resultType="NavigationBean">
+    </select>
+
+    <select id="listPageDesc" parameterType="NavigationBean" resultType="NavigationBean">
+    </select>
+
+</mapper>
